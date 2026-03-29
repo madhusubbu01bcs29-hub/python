@@ -1,0 +1,23 @@
+marks=[]
+t=float(input("Enter tamil mark:"))
+e=float(input("Enter english mark:"))
+m=float(input("Enter maths mark:"))
+s=float(input("Enter science mark:"))
+ss=float(input("Enter social science mark:"))
+Total=(t+e+m+s+ss)
+percentage=((Total/500)*100)
+print("total:",Total)
+print("Percentage:",percentage)
+if percentage>=90:
+    grade="O"
+elif percentage>=80:
+    grade="A+"
+elif percentage>=70:
+    grade="A"
+elif percentage>=60:
+    grade="B+"
+elif percentage>=50:
+    grade="B"
+else:
+    grade="fail"
+print("grade:{grade}")
