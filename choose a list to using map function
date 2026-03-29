@@ -1,0 +1,33 @@
+# Program to perform list operations
+lis = list(map(int, input("Enter a list of numbers separated by space: ").split()))
+
+print("\nMenu:")
+print("1. Maximum value")
+print("2. Minimum value")
+print("3. Slice")
+print("4. Count number of occurrence of any item")
+print("5. Find the first occurrence of the item")
+
+ch = int(input("\nEnter your choice: "))
+
+if ch == 1:
+    print("Maximum value:", max(lis))
+elif ch == 2:
+    print("Minimum value:", min(lis))
+elif ch == 3:
+    print("Slice value")
+    s = int(input("Enter start index: "))
+    e = int(input("Enter end index: "))
+    st = int(input("Enter step value: "))
+    print("Sliced elements in list:", lis[s:e+1:st])
+elif ch == 4:
+    a = int(input("Enter number to count: "))
+    print("Count =", lis.count(a))
+elif ch == 5:
+    i = int(input("Enter item to find occurrence position: "))
+    if i in lis:
+        print("Occurrence of item is at position:", lis.index(i))
+    else:
+        print("Item not found in list.")
+else:
+    print("Invalid choice")
