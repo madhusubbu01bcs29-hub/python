@@ -1,0 +1,10 @@
+n=int(input("Enter the value for n"))
+if n%2!=0:
+   print("Weird")
+elif n%2==0:
+   if n>=0 and n<=20:
+      print("Not weird")
+   elif n>=21 and n<=40:
+      print("Weird")
+   else:
+      print("Not weird")
