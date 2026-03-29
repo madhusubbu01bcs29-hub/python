@@ -1,0 +1,6 @@
+a=input("Enter a string/n")
+word=a.split()
+print("The words greater than length 5 are")
+for i in word:
+    if len(i)>5:
+        print(i)
