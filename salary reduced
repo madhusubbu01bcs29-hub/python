@@ -1,0 +1,8 @@
+salary=float(input("Enter the salary of the employee"))
+ad=int(input("Enter the number of days absent"))
+if ad<=2:
+   print("salary",salary)
+elif ad>2:
+   d=ad-2
+   reduced_salary=salary-d*500
+   print("The reduced salary is",reduced_salary)
