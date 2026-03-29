@@ -1,0 +1,10 @@
+a=input("Enter a sentance").split()
+d={}
+d["store"]="Shop"
+d["car"]="bike"
+d["candy"]="toffy"
+d["biscuit"]="cookie"
+for i in a:
+  if i in d:
+      i=d[i]
+      print(i,end="")
