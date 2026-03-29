@@ -1,0 +1,11 @@
+a=input("Enter a word")
+i=0
+print("Character at odd position")
+while i<len(a):
+    print(a[i])
+    i=i+2
+i=1
+print("Character at even positions")
+while i<len(a):
+    print(a[i])
+    i=i+2
