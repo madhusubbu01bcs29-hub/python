@@ -1,0 +1,53 @@
+# Store students in a list of tuples: (ID, Name, Mark)
+students = []
+# Input number of students
+try:
+    n = int(input("Enter number of students: "))
+    if n <= 0:
+        print("Number of students must be positive.")
+        exit()
+except ValueError:
+    print("Invalid input. Please enter an integer.")
+    exit()
+# Input student details
+for i in range(n):
+    try:
+        sid = int(input(f"Enter student {i+1} ID: "))
+        name = input(f"Enter student {i+1} name: ").strip()
+        mark = int(input(f"Enter student {i+1} mark: "))
+        students.append((sid, name, mark))
+    except ValueError:
+        print("Invalid input. Please enter correct data types.")
+        exit()
+# Display all students
+print("\nStudent details:")
+for s in students:
+    print(s)
+# Search for a student by ID
+try:
+    search_id = int(input("\nEnter student ID to search: "))
+except ValueError:
+    print("Invalid ID.")
+    exit()
+found = False
+for s in students:
+    if s[0] == search_id:
+        print("Student found:", s)
+        found = True
+        break
+if not found:
+    print("Student not found.")
+
+# Find student with highest mark
+top_student = max(students, key=lambda x: x[2])
+print("\nStudent with highest mark:", top_student)
+
+# Students with marks < 40
+print("\nStudents with marks < 40:")
+for s in students:
+    if s[2] < 40:
+        print(s)
+# Calculate average mark
+total_marks = sum(s[2] for s in students)
+average = total_marks / len(students)
+print("\nAverage mark:", average)
