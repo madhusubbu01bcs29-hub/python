@@ -1,0 +1,48 @@
+def calculate_total(cart_items):
+    total = 0
+    for item in cart_items:
+        name, quantity, price = item
+        total += quantity * price
+    return total
+def display_bill(cart_items):
+    print("------- Shopping Cart Bill -------")
+    print(f"{'Item':<15}{'Quantity':<10}{'Price':<10}{'Total':<10}")
+    print("-" * 45)
+    for item in cart_items:
+        name, quantity, price = item
+        item_total = quantity * price
+        print(f"{name:<15}{quantity:<10}{price:<10}{item_total:<10}")
+    total_cost = calculate_total(cart_items)
+    print("-" * 45)
+    print(f"{'Grand Total':<35}{total_cost:<10.2f}")
+    print("---------------------------------")
+def main():
+    cart_items = []
+    while True:
+        print("1. Add item to cart")
+        print("2. View bill")
+        print("3. Exit")
+        choice = input("Enter your choice (1/2/3): ")
+        if choice == "1":
+            item_name = input("Enter item name: ")
+            try:
+                quantity = int(input("Enter quantity: "))
+                price = float(input("Enter price per item: "))
+                cart_items.append((item_name, quantity, price))
+                print(f"Added {quantity} x {item_name} at ₹{price} each to cart.")
+            except ValueError:
+                print("Invalid input. Please enter numeric values for quantity and price.")
+        elif choice == "2":
+            if cart_items:
+                display_bill(cart_items)
+            else:
+                print("Your cart is empty.")
+        elif choice == "3":
+            print("Thank you for shopping!")
+            if cart_items:
+                display_bill(cart_items)
+            break
+        else:
+            print("Invalid choice. Please try again.")
+if __name__ == "__main__":
+    main()
