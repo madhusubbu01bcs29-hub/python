@@ -1,0 +1,15 @@
+def calculate_bill(units):
+    bill = 0
+    if units <= 99:
+        bill = 0
+    elif units <= 199:
+        bill = (units - 99) * 1.5
+    elif units <= 299:
+        bill = (100 * 1.5) + (units - 199) * 2.5
+    elif units <= 400:
+        bill = (100 * 1.5) + (100 * 2.5) + (units - 299) * 4
+    else:
+        bill = (100 * 1.5) + (100 * 2.5) + (101 * 4) + (units - 400) * 5
+    return bill
+units_consumed=450
+print(f"Total Bill: ₹{calculate_bill(units_consumed):.2f}")def calculate_bill(units):
