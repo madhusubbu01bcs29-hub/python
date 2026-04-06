@@ -1,0 +1,62 @@
+class InvalidPINError(Exception):
+    pass
+class AccountBlockedError(Exception):
+    pass
+class ATM:
+    def __init__(self, username, pin, balance):
+        self.username = username
+        self._pin = pin
+        self.balance = balance
+        self.attempts = 0
+        self.is_blocked = False
+    def verify_pin(self, entered_pin):
+        if self.is_blocked:
+            raise AccountBlockedError("Account blocked due to 3 wrong attempts")
+        if entered_pin == self._pin:
+            print("PIN Verified Successfully")
+            self.attempts = 0
+            return True
+        else:
+            self.attempts += 1
+            if self.attempts >= 3:
+                self.is_blocked = True
+                raise AccountBlockedError("Account blocked due to 3 wrong attempts")
+            else:
+                raise InvalidPINError(f"Incorrect PIN. Attempts left: {3 - self.attempts}")
+    def withdraw(self, entered_pin, amount):
+        try:
+            if self.verify_pin(entered_pin):
+                if amount > self.balance:
+                    print("Insufficient balance")
+                else:
+                    self.balance -= amount
+                    print(f"Withdrawal successful! Remaining balance: ${self.balance}")
+        except InvalidPINError as e:
+            print(e)
+        except AccountBlockedError as e:
+            print(e)
+def run_atm():
+    username = input("Enter your username: ")
+    pin = input("Set your PIN: ")
+    balance = float(input("Enter your initial balance: "))
+    atm = ATM(username, pin, balance)
+    while True:
+        print("--- ATM Menu ---")
+        print("1. Withdraw")
+        print("2. Exit")
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            entered_pin = input("Enter your PIN: ")
+            try:
+                amount = float(input("Enter amount to withdraw: "))
+            except ValueError:
+                print("Invalid amount entered")
+                continue
+            atm.withdraw(entered_pin, amount)
+        elif choice == "2":
+            print("Exiting... Thank you!")
+            break
+        else:
+            print("Invalid choice")
+if __name__ == "__main__":
+    run_atm()
