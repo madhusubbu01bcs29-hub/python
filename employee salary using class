@@ -1,0 +1,28 @@
+class Employee:
+    def __init__(self, name: str, basic: float):
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("Name must be a non-empty string.")
+        if not isinstance(basic, (int, float)) or basic < 0:
+            raise ValueError("Basic salary must be a non-negative number.")
+        self.name = name
+        self.basic = float(basic)
+    def calculate_salary(self):
+        da = 0.10 * self.basic
+        hra = 0.20 * self.basic
+        gross_salary = self.basic + da + hra
+        return {
+            "Name": self.name,
+            "Basic": self.basic,
+            "DA": da,
+            "HRA": hra,
+            "Gross Salary": gross_salary
+        }
+if __name__ == "__main__":
+    try:
+        emp = Employee("John Doe", 50000)
+        salary_details = emp.calculate_salary()
+        print("Salary Details:")
+        for key, value in salary_details.items():
+            print(f"{key}: {value:.2f}" if isinstance(value, float) else f"{key}: {value}")
+    except ValueError as e:
+        print(f"Error: {e}")
