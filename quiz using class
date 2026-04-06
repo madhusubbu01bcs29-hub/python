@@ -1,0 +1,26 @@
+class Question:
+    def __init__(self, prompt, answer):
+        self.prompt = prompt
+        self.answer = answer
+class Quiz:
+    def __init__(self, questions):
+        self.questions = questions  # List of Question objects
+        self.score = 0
+    def run(self):
+        for i, question in enumerate(self.questions, start=1):
+            print(f"Question {i}: {question.prompt}")
+            user_answer = input("Your answer: ").strip()
+            if user_answer.lower() == question.answer.lower():
+                print("Correct!")
+                self.score += 1
+            else:
+                print(f"Wrong. The correct answer is: {question.answer}")
+        print(f"Quiz completed! Your score: {self.score}/{len(self.questions)}")
+if __name__ == "__main__":
+    question_list = [
+        Question("What is the capital of France?", "Paris"),
+        Question("What is 5 + 7?", "12"),
+        Question("Who wrote 'Hamlet'?", "Shakespeare")
+    ]
+    quiz = Quiz(question_list)
+    quiz.run()
