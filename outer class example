@@ -1,0 +1,59 @@
+import sys
+import gc
+class Company:
+    def __init__(self, cname):
+        self.cname = cname
+        self.employees = []
+    class Employee:
+        def __init__(self, emp_id, emp_name, company):
+            self.emp_id = emp_id
+            self.emp_name = emp_name
+            self.company = company
+        def display_details(self):
+            print(f"Employee ID: {self.emp_id}, Name: {self.emp_name}, Company: {self.company.cname}")
+        def __del__(self):
+            print(f"Employee '{self.emp_name}' is garbage collected")
+    def add_employee(self, emp_id, emp_name):
+        emp = Company.Employee(emp_id, emp_name, self)
+        self.employees.append(emp)
+        print(f"\nEmployee '{emp_name}' hired")
+        print("Reference count (employee):", sys.getrefcount(emp) - 1)
+        print("Reference count (company):", sys.getrefcount(self) - 1)
+    def remove_employee(self, emp_id):
+        for i, emp in enumerate(self.employees):
+            if emp.emp_id == emp_id:
+                print(f"\nEmployee '{emp.emp_name}' resigned")
+                print("Reference count before deletion:", sys.getrefcount(emp) - 1)
+                removed = self.employees.pop(i)
+                del removed
+                gc.collect()
+                print("Garbage collection done")
+                return
+        print("Employee not found")
+    def display_all(self):
+        print(f"\nEmployees in {self.cname}:")
+        if not self.employees:
+            print("No employees available")
+        else:
+            for emp in self.employees:
+                emp.display_details()
+# ---------------- MAIN PROGRAM ----------------
+gc.enable()
+cname = input("Enter Company Name: ")
+company = Company(cname)
+num_employees = int(input("Enter number of employees: "))
+for i in range(num_employees):
+    print(f"\nEnter details for employee {i+1}")
+    emp_id = int(input("Employee ID: "))
+    emp_name = input("Employee Name: ")
+    company.add_employee(emp_id, emp_name)
+company.display_all()
+remove_count = int(input("\nEnter number of employees to remove: "))
+for i in range(remove_count):
+    emp_id = int(input(f"Enter Employee ID to remove ({i+1}): "))
+    company.remove_employee(emp_id)
+company.display_all()
+print("\nDeleting company object...")
+del company
+gc.collect()
+print("Final garbage collection completed")
