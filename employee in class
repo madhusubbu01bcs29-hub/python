@@ -1,0 +1,65 @@
+import gc
+import sys
+class Employee:
+    def __init__(self, emp_id, name):
+        self.emp_id = emp_id
+        self.name = name
+        self.address = None
+    class Address:
+        def __init__(self, city, state):
+            self.city = city
+            self.state = state
+        def display_address(self):
+            print(f"City: {self.city}, State: {self.state}")
+        def __del__(self):
+            print("Address object is garbage collected")
+    def set_address(self, city, state):
+        self.address = Employee.Address(city, state)
+    def display(self):
+        print(f"\nEmployee ID: {self.emp_id}")
+        print(f"Name: {self.name}")
+        if self.address:
+            self.address.display_address()
+        else:
+            print("No address assigned")
+    def __del__(self):
+        print(f"Employee '{self.name}' object is garbage collected")
+# ---------------- MAIN PROGRAM ----------------
+gc.enable()
+employees = []
+n = int(input("Enter number of employees to hire: "))
+for i in range(n):
+    print(f"\nEnter details for Employee {i+1}")
+    emp_id = int(input("Employee ID: "))
+    name = input("Name: ")
+    city = input("City: ")
+    state = input("State: ")
+    emp = Employee(emp_id, name)
+    emp.set_address(city, state)
+    employees.append(emp)
+    print(f"\nEmployee '{name}' hired")
+    print("Reference count:", sys.getrefcount(emp) - 1)
+print("\n--- Employee Details ---")
+for emp in employees:
+    emp.display()
+remove_id = int(input("\nEnter Employee ID to resign: "))
+for i, emp in enumerate(employees):
+    if emp.emp_id == remove_id:
+        print(f"\nEmployee '{emp.name}' resigned")
+        removed_emp = employees.pop(i)
+        del removed_emp
+        gc.collect()
+        print("Garbage collection done")
+        break
+else:
+    print("Employee not found")
+print("\n--- Remaining Employees ---")
+if not employees:
+    print("No employees left")
+else:
+    for emp in employees:
+        emp.display()
+print("\nDeleting all employee records...")
+del employees
+gc.collect()
+print("Final garbage collection completed")
