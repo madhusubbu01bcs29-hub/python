@@ -1,0 +1,75 @@
+import sys
+class Supplier:
+    def __init__(self, supplier_id, name):
+        self.supplier_id = supplier_id
+        self.name = name
+    def display_supplier(self):
+        print(f"Supplier ID: {self.supplier_id}, Name: {self.name}")
+    def __del__(self):
+        print(f"Supplier '{self.name}' is garbage collected")
+class Product:
+    def __init__(self, product_id, name, supplier):
+        self.product_id = product_id
+        self.name = name
+        self.supplier = supplier
+        self.spec = None
+    class Specification:
+        def __init__(self, weight, color):
+            self.weight = weight
+            self.color = color
+        def display_spec(self):
+            print(f"Weight: {self.weight}, Color: {self.color}")
+        def __del__(self):
+            print("Specification object is garbage collected")
+    def set_specification(self, weight, color):
+        self.spec = Product.Specification(weight, color)
+    def display_product(self):
+        print(f"\nProduct ID: {self.product_id}")
+        print(f"Name: {self.name}")
+        self.supplier.display_supplier()
+        if self.spec:
+            self.spec.display_spec()
+        else:
+            print("No specification available")
+    def __del__(self):
+        print(f"Product '{self.name}' is garbage collected")
+# ---------------- MAIN PROGRAM ----------------
+products = []
+n = int(input("Enter number of products: "))
+for i in range(n):
+    print(f"\nEnter details for product {i+1}")
+    pid = int(input("Product ID: "))
+    pname = input("Product Name: ")
+    sid = int(input("Supplier ID: "))
+    sname = input("Supplier Name: ")
+    weight = input("Weight: ")
+    color = input("Color: ")
+    supplier = Supplier(sid, sname)
+    product = Product(pid, pname, supplier)
+    product.set_specification(weight, color)
+    products.append(product)
+    print(f"\nProduct '{pname}' added")
+    print("Reference count (product):", sys.getrefcount(product) - 1)
+    print("Reference count (supplier):", sys.getrefcount(supplier) - 1)
+print("\n--- Product Details ---")
+for p in products:
+    p.display_product()
+remove_id = int(input("\nEnter product ID to remove: "))
+for i, p in enumerate(products):
+    if p.product_id == remove_id:
+        print(f"\nRemoving product '{p.name}'")
+        removed = products.pop(i)
+        del removed
+        print("Product removed")
+        break
+else:
+    print("Product not found")
+print("\n--- Remaining Products ---")
+if not products:
+    print("No products available")
+else:
+    for p in products:
+        p.display_product()
+print("\nDeleting all products...")
+del products
+print("Program ended")
