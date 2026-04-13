@@ -1,0 +1,66 @@
+import sys
+class Student:
+    def __init__(self, rollno, name):
+        self.rollno = rollno
+        self.name = name
+        self.courses = []
+    class Course:
+        def __init__(self, course_name):
+            self.course_name = course_name
+        def display_course(self):
+            print(f"Course: {self.course_name}")
+        def __del__(self):
+            print(f"Course '{self.course_name}' is garbage collected")
+    def add_course(self, course_name):
+        course = Student.Course(course_name)
+        self.courses.append(course)
+        print(f"Course '{course_name}' added")
+        print("Reference count (course):", sys.getrefcount(course) - 1)
+    def display(self):
+        print(f"\nRoll No: {self.rollno}")
+        print(f"Name: {self.name}")
+        print("Enrolled Courses:")
+        if not self.courses:
+            print("No courses enrolled")
+        else:
+            for c in self.courses:
+                c.display_course()
+    def __del__(self):
+        print(f"Student '{self.name}' is garbage collected")
+# ---------------- MAIN PROGRAM ----------------
+students = []
+n = int(input("Enter number of students: "))
+for i in range(n):
+    print(f"\nEnter details for student {i+1}")
+    roll = int(input("Roll No: "))
+    name = input("Name: ")
+    s = Student(roll, name)
+    m = int(input("Enter number of courses: "))
+    for j in range(m):
+        cname = input(f"Course {j+1}: ")
+        s.add_course(cname)
+    students.append(s)
+    print(f"Student '{name}' registered")
+    print("Reference count (student):", sys.getrefcount(s) - 1)
+print("\n--- Student Details ---")
+for s in students:
+    s.display()
+r = int(input("\nEnter roll number to remove: "))
+for i, s in enumerate(students):
+    if s.rollno == r:
+        print(f"\nRemoving student '{s.name}'")
+        removed = students.pop(i)
+        del removed
+        print("Student removed")
+        break
+else:
+    print("Student not found")
+print("\n--- Remaining Students ---")
+if not students:
+    print("No students available")
+else:
+    for s in students:
+        s.display()
+print("\nDeleting all student records...")
+del students
+print("Program ended")
