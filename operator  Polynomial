@@ -1,0 +1,31 @@
+class Polynomial:
+    def __init__(self, coefficients):
+        self.coefficients = coefficients
+    def __mul__(self, other):
+        m = len(self.coefficients)
+        n = len(other.coefficients)
+        result = [0] * (m + n - 1)
+        for i in range(m):
+            for j in range(n):
+                result[i + j] += (
+                    self.coefficients[i] * other.coefficients[j]
+                )
+        return Polynomial(result)
+    def __str__(self):
+        terms = []
+        for power, coeff in enumerate(self.coefficients):
+            if coeff == 0:
+                continue
+            if power == 0:
+                terms.append(str(coeff))
+            elif power == 1:
+                terms.append(f"{coeff}x")
+            else:
+                terms.append(f"{coeff}x^{power}")
+        return " + ".join(terms) if terms else "0"
+p1 = Polynomial([2, 3])
+p2 = Polynomial([1, 4, 5])
+product = p1 * p2
+print("Polynomial 1 :", p1)
+print("Polynomial 2 :", p2)
+print("Product       :", product)
