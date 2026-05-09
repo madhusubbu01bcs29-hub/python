@@ -1,0 +1,57 @@
+class Matrix:
+    def __init__(self, rows, cols):
+        self.rows = rows
+        self.cols = cols
+        self.data = []
+        print(f"Enter elements for {rows} x {cols} matrix:")
+        for i in range(rows):
+            row = list(map(int, input().split()))
+            self.data.append(row)
+    def __add__(self, other):
+        result = []
+        for i in range(self.rows):
+            row = []
+            for j in range(self.cols):
+                row.append(self.data[i][j] + other.data[i][j])
+            result.append(row)
+        return Matrix.from_list(result)
+    def __sub__(self, other):
+        result = []
+        for i in range(self.rows):
+            row = []
+            for j in range(self.cols):
+                row.append(self.data[i][j] - other.data[i][j])
+            result.append(row)
+        return Matrix.from_list(result)
+    def __mul__(self, other):
+        result = [[0 for j in range(other.cols)]
+                  for i in range(self.rows)]
+        for i in range(self.rows):
+            for j in range(other.cols):
+                for k in range(self.cols):
+                    result[i][j] += (
+                        self.data[i][k] * other.data[k][j]
+                    )
+        return Matrix.from_list(result)
+    @classmethod
+    def from_list(cls, data):
+        obj = cls.__new__(cls)
+        obj.rows = len(data)
+        obj.cols = len(data[0])
+        obj.data = data
+        return obj
+    def display(self):
+        for row in self.data:
+            print(row)
+rows = int(input("Enter number of rows: "))
+cols = int(input("Enter number of columns: "))
+print("Enter Matrix A")
+A = Matrix(rows, cols)
+print("Enter Matrix B")
+B = Matrix(rows, cols)
+print("\nMatrix Addition:")
+(A + B).display()
+print("\nMatrix Subtraction:")
+(A - B).display()
+print("\nMatrix Multiplication:")
+(A * B).display()
