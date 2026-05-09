@@ -1,0 +1,55 @@
+class Vector:
+    def __init__(self, values):
+        self.values = values
+    def __add__(self, other):
+        result = []
+        for i in range(len(self.values)):
+            result.append(self.values[i] + other.values[i])
+        return Vector(result)
+    def __sub__(self, other):
+        result = []
+        for i in range(len(self.values)):
+            result.append(self.values[i] - other.values[i])
+        return Vector(result)
+    def __mul__(self, scalar):
+        result = []
+        for value in self.values:
+            result.append(value * scalar)
+        return Vector(result)
+    def __eq__(self, other):
+        return self.values == other.values
+    def dot_product(self, other):
+        dot = 0
+        for i in range(len(self.values)):
+            dot += self.values[i] * other.values[i]
+        return dot
+    def cross_product(self, other):
+        a1, a2, a3 = self.values
+        b1, b2, b3 = other.values
+        return Vector([
+            a2 * b3 - a3 * b2,
+            a3 * b1 - a1 * b3,
+            a1 * b2 - a2 * b1
+        ])
+    def __str__(self):
+        return str(self.values)
+v1 = list(map(int, input("Enter first vector: ").split()))
+v2 = list(map(int, input("Enter second vector: ").split()))
+V1 = Vector(v1)
+V2 = Vector(v2)
+print("\nAddition:")
+print(V1 + V2)
+print("\nSubtraction:")
+print(V1 - V2)
+scalar = int(input("\nEnter scalar value: "))
+print("\nScalar Multiplication:")
+print(V1 * scalar)
+print("\nEquality Check:")
+print(V1 == V2)
+print("\nDot Product:")
+print(V1.dot_product(V2))
+if len(v1) == 3 and len(v2) == 3:
+    print("\nCross Product:")
+    print(V1.cross_product(V2))
+else:
+    print("\nCross Product possible only for 3D vectors.")
