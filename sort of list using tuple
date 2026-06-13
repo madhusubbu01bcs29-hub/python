@@ -1,0 +1,5 @@
+lst = [(2,5), (1,2), (4,4), (2,3), (2,1)]
+
+sorted_lst = sorted(lst)
+
+print("Sorted List:", sorted_lst)
