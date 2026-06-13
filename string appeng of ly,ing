@@ -1,0 +1,12 @@
+def modify_string(text):
+    if len(text) < 3:
+        return text
+    elif text.endswith('ing'):
+        return text + 'ly'
+    else:
+        return text + 'ing'
+
+# Test execution
+print(modify_string('abc'))     # Output: abcing
+print(modify_string('string'))  # Output: stringly
+print(modify_string('it'))      # Output: it
