@@ -1,0 +1,30 @@
+class Student:
+    school = "ABC School"   # class variable
+    def __init__(self, name, marks):
+        self.name = name        # instance variable
+        self.marks = marks
+    def display(self):     # Instance Method
+        print("Name:", self.name)
+        print("Marks:", self.marks)
+    @classmethod
+    def change_school(cls, new_school): # Class Method
+        cls.school = new_school
+    @staticmethod
+    def calculate_average(marks): # Static Method
+        return sum(marks) / len(marks)
+
+
+s1 = Student("Aruna", [80, 90, 85])
+s2 = Student("Kumar", [70, 75, 80])
+# Instance method calls
+s1.display()
+s2.display()
+# Class method call
+Student.change_school("XYZ School")
+print("School Name:", Student.school)
+# Static method call
+avg1 = Student.calculate_average(s1.marks)
+avg2=s2.calculate_average(s2.marks)
+print("Average of Aruna:", avg1)
+print("Average of Kumar:", avg2)
+
