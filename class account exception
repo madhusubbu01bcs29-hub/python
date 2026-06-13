@@ -1,0 +1,30 @@
+class InvalidLoginError(Exception):
+    pass
+class AccountLockedError(Exception):
+    pass
+class LoginSystem:
+    def getdetails(self):
+        self.username = input("Set Username: ")
+        self.password = input("Set Password: ")
+        self.attempts = 0
+    def login(self):
+        if self.attempts >= 3:
+            raise AccountLockedError
+        user = input("Enter Username: ")
+        pwd = input("Enter Password: ")
+        if user != self.username or pwd != self.password:
+            self.attempts += 1
+            raise InvalidLoginError
+        print("Login Successful")
+        return True
+obj = LoginSystem()
+obj.getdetails()
+while True:
+    try:
+        if obj.login():
+            break
+    except InvalidLoginError:
+        print("Invalid Username or Password")
+    except AccountLockedError:
+        print("Account Locked")
+        break
