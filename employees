@@ -1,0 +1,51 @@
+class Employee:
+    def __init__(self, empid, name, salary, percentage):
+        self.empid = empid
+        self.name = name
+        self.salary = salary
+        self.percentage = percentage
+
+    def calculate_bonus(self):
+        bonus = (self.salary * self.percentage) / 100
+        return bonus
+
+
+class Manager(Employee):
+    def manager_details(self):
+        self.department = input("Enter Department: ")
+        self.team_size = int(input("Enter Team Size: "))
+        self.allowance = float(input("Enter Allowance: "))
+
+    def printManager(self):
+        print("\nManager Details")
+        print("ID:", self.empid)
+        print("Name:", self.name)
+        print("Salary:", self.salary)
+        print("Bonus:", self.calculate_bonus())
+        print("Department:", self.department)
+        print("Team Size:", self.team_size)
+        print("Allowance:", self.allowance)
+
+
+class Developer(Employee):
+    def developer_details(self):
+        self.project = input("Enter Project Name: ")
+        self.experience = int(input("Enter Experience (Years): "))
+
+    def printDeveloper(self):
+        print("\nDeveloper Details")
+        print("ID:", self.empid)
+        print("Name:", self.name)
+        print("Salary:", self.salary)
+        print("Bonus:", self.calculate_bonus())
+        print("Project:", self.project)
+        print("Experience:", self.experience)
+
+
+m = Manager(101, "Ravi", 50000, 10)
+m.manager_details()
+m.printManager()
+
+d = Developer(102, "Kumar", 40000, 8)
+d.developer_details()
+d.printDeveloper()
