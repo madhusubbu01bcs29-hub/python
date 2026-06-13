@@ -1,0 +1,13 @@
+class Student:
+    def __init__(self, name, marks):
+        self.name = name        # instance variable
+        self.marks = marks      # instance variable
+    def display(self):          # instance method
+        print("Name:", self.name)
+        print("Marks:", self.marks)
+    def calculate_average(self):   # instance method
+        avg = sum(self.marks) / len(self.marks)
+        print("Average Marks:", avg)
+s1 = Student("Aruna", [85, 90, 80])
+s1.display()
+s1.calculate_average()
