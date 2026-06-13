@@ -1,0 +1,18 @@
+def count_vowels_consonants(input_str):
+    vowels = "aeiouAEIOU"
+    v_count = 0
+    c_count = 0
+    
+    for char in input_str:
+        if char.isalpha(): # Only calculate letters
+            if char in vowels:
+                v_count += 1
+            else:
+                c_count += 1
+                
+    return v_count, c_count
+
+# Test execution
+text = "Hello World"
+v, c = count_vowels_consonants(text)
+print(f"String: '{text}' -> Vowels: {v}, Consonants: {c}")
