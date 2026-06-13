@@ -1,0 +1,46 @@
+class Department:
+    def getdeptdetails(self):
+        self.dept_id = input("Enter Department ID: ")
+        self.dept_name = input("Enter Department Name: ")
+
+    def printdept(self):
+        print("\nDepartment Details")
+        print("Department ID:", self.dept_id)
+        print("Department Name:", self.dept_name)
+
+
+class Course(Department):
+    def getcourse(self):
+        self.code = input("Enter Course Code: ")
+        self.cname = input("Enter Course Name: ")
+        self.duration = input("Enter Course Duration: ")
+
+    def printcourse(self):
+        print("\nCourse Details")
+        print("Course Code:", self.code)
+        print("Course Name:", self.cname)
+        print("Duration:", self.duration)
+
+
+class Student(Course):
+    def getdetails(self):
+        self.rollno = input("Enter Roll Number: ")
+        self.sname = input("Enter Student Name: ")
+        self.mark = float(input("Enter Mark: "))
+
+    def printstudent(self):
+        print("\nStudent Details")
+        print("Roll No:", self.rollno)
+        print("Name:", self.sname)
+        print("Mark:", self.mark)
+
+
+obj = Student()
+
+obj.getdeptdetails()
+obj.getcourse()
+obj.getdetails()
+
+obj.printdept()
+obj.printcourse()
+obj.printstudent()
