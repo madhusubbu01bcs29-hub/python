@@ -1,0 +1,15 @@
+class Student:
+    school = "ABC School"   # Class Variable
+    def __init__(self, name, marks):
+        self.name = name    # Instance Variable
+        self.marks = marks  # Instance Variable
+    def display(self):
+        grade = "Pass" if self.marks >= 50 else "Fail"   # Local Variable
+        print("Name:", self.name)
+        print("Marks:", self.marks)
+        print("School:", Student.school)
+        print("Grade:", grade)
+s1 = Student("Aruna", 85)
+s2 = Student("Ravi", 40)
+s1.display()
+s2.display()
