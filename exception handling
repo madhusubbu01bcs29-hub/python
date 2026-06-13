@@ -1,0 +1,37 @@
+class InvalidPINError(Exception):
+    pass
+
+class AccountBlockedError(Exception):
+    pass
+
+class ATM:
+    	#create method to get the username and password
+def verify_pin(self, entered_pin):
+        try:
+            # condition check if account is blocked
+                 raise AccountBlockedError("Account Blocked due to 3 wrong attempts")
+
+            # check PIN and increment the attempt value if wrong pin entered raise exception
+                         raise InvalidPINError("Incorrect PIN")
+
+            print("PIN Verified Successfully")
+            self.attempts = 0   # reset after success
+
+        except InvalidPINError :
+            print("InvalidPINError")
+        except  AccountBlockedError:
+            print("AccountBlockedError")
+    def withdraw(self, amount):
+        try:
+            if self.attempts >= 3:
+                raise AccountBlockedError
+
+            if amount > self.balance:
+                raise Exception("Insufficient Balance")
+
+            #code to withdraw amount and print balance
+
+        except  AccountBlockedError:
+            print("AccountBlockedError")
+    
+# create object and call necessary functions
