@@ -1,0 +1,16 @@
+def calculate_earnings(age_list):
+    earnings = 0
+
+    for age in age_list:
+        if age < 17:
+            earnings += 200
+        elif age <= 40:
+            earnings += 400
+        else:
+            earnings += 300
+
+    return earnings
+
+ages = [10, 25, 50, 15, 35]
+
+print("Total Earnings =", calculate_earnings(ages))
