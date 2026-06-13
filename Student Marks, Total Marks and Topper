@@ -1,0 +1,18 @@
+students = {
+    "Arun": [80, 75, 90, 85, 88],
+    "Bala": [70, 78, 82, 79, 85],
+    "Chitra": [95, 92, 90, 98, 94]
+}
+
+total_marks = {}
+
+for name, marks in students.items():
+    total_marks[name] = sum(marks)
+
+print("Total Marks:")
+print(total_marks)
+
+topper = max(total_marks, key=total_marks.get)
+
+print("Topper:", topper)
+print("Marks:", total_marks[topper])
