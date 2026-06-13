@@ -1,0 +1,21 @@
+car = {
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2022
+}
+
+print("Dictionary:", car)
+
+# A) Get only keys
+print(car.keys())
+
+# B) Delete only contents
+temp = car.copy()
+temp.clear()
+print(temp)
+
+# C) Get key-value pairs
+print(car.items())
+
+# D) Remove last inserted item
+print(car.popitem())
