@@ -1,0 +1,20 @@
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def power(a, b):
+    return a ** b
+import math_operations
+
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+print("Addition =", math_operations.add(a, b))
+print("Subtraction =", math_operations.subtract(a, b))
+print("Multiplication =", math_operations.multiply(a, b))
+print("Power =", math_operations.power(a, b))
