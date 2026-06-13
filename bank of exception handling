@@ -1,0 +1,42 @@
+class InsufficientBalanceError(Exception):
+    pass
+class InvalidAmountError(Exception):
+    pass
+class BankAccount:
+    def getdetails(self):
+        self.acc_no = input("Enter Account Number: ")
+        self.name = input("Enter Account Holder Name: ")
+        self.balance = float(input("Enter Initial Balance: "))
+    def deposit(self):
+        try:
+            amount = float(input("Enter amount to deposit: "))
+            if amount <= 0:
+                raise InvalidAmountError("Invalid deposit amount")
+            self.balance += amount
+            print("Deposit Successful")
+            print("Updated Balance:", self.balance)
+        except InvalidAmountError:
+            print("INVALID DEPOSIT AMOUNT")
+    def withdraw(self):
+        try:
+            amount = float(input("Enter amount to withdraw: "))
+            if amount <= 0:
+                raise InvalidAmountError("Invalid withdrawal amount")
+            if amount > self.balance:
+                raise InsufficientBalanceError("Insufficient Balance")
+            self.balance -= amount
+            print("Withdrawal Successful")
+            print("Remaining Balance:", self.balance)
+        except InvalidAmountError as e:
+            print(e)
+        except InsufficientBalanceError as e:
+            print(e)
+    def display(self):
+        # code to display all variables
+        print("\n----- Account Details -----")
+        print("Account Number :", self.acc_no)
+        print("Account Holder :", self.name)
+        print("Balance :", self.balance)
+obj = BankAccount()
+obj.getdetails()
+obj.deposit()
