@@ -1,0 +1,7 @@
+# Tuple containing key-value pairs
+t = (("a", 1), ("b", 2), ("c", 3))
+
+# Convert tuple to dictionary
+d = dict(t)
+
+print("Dictionary:", d)
