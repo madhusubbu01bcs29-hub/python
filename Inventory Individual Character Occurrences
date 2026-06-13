@@ -1,0 +1,9 @@
+def character_frequency(text):
+    frequency_dict = {}
+    for char in text:
+        # Increments counter or falls back to starting at 0 if new
+        frequency_dict[char] = frequency_dict.get(char, 0) + 1
+    return frequency_dict
+
+# Test execution
+print("Frequency counts:", character_frequency("apple"))
