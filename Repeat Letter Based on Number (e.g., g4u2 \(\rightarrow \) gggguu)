@@ -1,0 +1,15 @@
+import re
+
+def expand_string(input_str):
+    # Find all pairs of (letter, number)
+    pairs = re.findall(r'([A-Za-z])(+)', input_str)
+    
+    result = []
+    for char, count in pairs:
+        result.append(char * int(count))
+        
+    return "".join(result)
+
+# Test execution
+sample = "g4u2"
+print(f"Input: {sample} -> Output: {expand_string(sample)}")
