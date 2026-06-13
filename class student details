@@ -1,0 +1,68 @@
+class Student:
+    def __init__(self, name, roll_no, testMark):
+        self.name = name
+        self.roll_no = roll_no
+        self.testMark = testMark
+
+    def total_marks(self):
+        return self.testMark
+
+    def display(self):
+        print("Name:", self.name)
+        print("Roll No:", self.roll_no)
+        print("Test Mark:", self.testMark)
+
+
+class Literary_Student(Student):
+    def __init__(self, name, roll_no, testMark, literary_marks):
+        super().__init__(name, roll_no, testMark)
+        self.literary_marks = literary_marks
+
+    def total_marks(self):
+        return self.testMark + self.literary_marks
+
+    def display(self):
+        print("\nLiterary Student")
+        super().display()
+        print("Literary Marks:", self.literary_marks)
+        print("Total Marks:", self.total_marks())
+
+
+class Sports_Student(Student):
+    def __init__(self, name, roll_no, testMark, sports_marks):
+        super().__init__(name, roll_no, testMark)
+        self.sports_marks = sports_marks
+
+    def total_marks(self):
+        return self.testMark + self.sports_marks
+
+    def display(self):
+        print("\nSports Student")
+        super().display()
+        print("Sports Marks:", self.sports_marks)
+        print("Total Marks:", self.total_marks())
+
+
+class Lit_Sport_Student(Literary_Student, Sports_Student):
+    def __init__(self, name, roll_no, testMark,
+                 literary_marks, sports_marks):
+
+        Student.__init__(self, name, roll_no, testMark)
+        self.literary_marks = literary_marks
+        self.sports_marks = sports_marks
+
+    def total_marks(self):
+        return self.testMark + self.literary_marks + self.sports_marks
+
+    def display(self):
+        print("\nLiterary + Sports Student")
+        print("Name:", self.name)
+        print("Roll No:", self.roll_no)
+        print("Test Mark:", self.testMark)
+        print("Literary Marks:", self.literary_marks)
+        print("Sports Marks:", self.sports_marks)
+        print("Total Marks:", self.total_marks())
+
+
+s = Lit_Sport_Student("Arun", 101, 80, 10, 15)
+s.display()
