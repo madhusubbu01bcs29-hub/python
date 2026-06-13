@@ -1,0 +1,15 @@
+car = {
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2022
+}
+
+print("Keys:", car.keys())
+
+temp = car.copy()
+temp.clear()
+print("After Clear:", temp)
+
+print("Items:", car.items())
+
+print("Removed Item:", car.popitem())
