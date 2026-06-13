@@ -1,0 +1,35 @@
+library = (
+    (101, "Python", "Guido", 5),
+    (102, "DSA", "Mark", 2),
+    (103, "DBMS", "Navathe", 7),
+    (104, "AI", "John", 1)
+)
+
+print("Library Books")
+
+for book in library:
+    print(book)
+
+book_id = int(input("Enter Book ID: "))
+
+found = False
+
+for book in library:
+    if book[0] == book_id:
+        print("Book Found")
+        print(book)
+        found = True
+
+if not found:
+    print("Book Not Found")
+
+print("\nLow Stock Books")
+
+for book in library:
+    if book[3] < 3:
+        print(book)
+
+highest = max(library, key=lambda x: x[3])
+
+print("\nHighest Quantity Book")
+print(highest)
