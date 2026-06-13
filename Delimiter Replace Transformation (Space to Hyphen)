@@ -1,0 +1,7 @@
+def space_to_hyphen(text):
+    words_list = text.split(" ")
+    return "-".join(words_list)
+
+# Test execution
+sample_phrase = "Python data structure lab exercises"
+print(space_to_hyphen(sample_phrase))
